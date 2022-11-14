@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Note {
-    var id: Int
+struct Note: Identifiable, Codable {
+    var id: String { _id }
+    var _id: String
     var note: String
 }
