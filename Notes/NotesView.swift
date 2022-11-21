@@ -9,9 +9,10 @@ import SwiftUI
 
 struct NotesView: View {
     
-    @StateObject var notesViewModel = NotesViewModel()
+    @ObservedObject var notesViewModel = NotesViewModel()
     @State private var showingAlert = false
     @State private var selectedNoteId = "0"
+    @State private var showingAdd = false
     
     var body: some View {
         NavigationView {
@@ -38,11 +39,14 @@ struct NotesView: View {
                         
                     }
                 }
+                .sheet(isPresented: $showingAdd) {
+                    NoteDetailView(isPresented: $showingAdd, notesViewModel: notesViewModel)
+                }
             }.navigationTitle("Notes")
                 .toolbar(content: {
                     ToolbarItem(content: {
                         Button("Add") {
-                            print("Add button pressed")
+                            self.showingAdd.toggle()
                         }
                     })
                 })
