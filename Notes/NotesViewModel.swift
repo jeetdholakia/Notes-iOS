@@ -87,4 +87,43 @@ class NotesViewModel: ObservableObject {
             throw error
         }
     }
+    
+    @MainActor
+    func updateNote(id:String, note:String) async throws {
+        let params = ["note" : note] as [String : Any]
+        let url = URL(string: "\(Constants.baseURL)/\(id)")!
+        let session = URLSession.shared
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        }
+        catch let error {
+            print(error)
+            throw error
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let task = session.dataTask(with: request) { data, res, err in
+            guard err == nil else { return }
+            guard let data = data else { return }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    print(json)
+                }
+            }
+            catch let error {
+                print(error)
+            }
+        }
+        
+        task.resume()
+        
+        if let index = notes.firstIndex(where: {$0.id == id}) {
+            notes[index].note = note
+        }
+    }
 }
