@@ -13,6 +13,7 @@
 		945D72C62920EC8900B3BC94 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 945D72C52920EC8900B3BC94 /* Preview Assets.xcassets */; };
 		945D72CD2920EECE00B3BC94 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945D72CC2920EECE00B3BC94 /* Note.swift */; };
 		94B2C30D2928E94D000E1636 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2C30C2928E94D000E1636 /* Constants.swift */; };
+		94B2C3112929C9CD000E1636 /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2C3102929C9CD000E1636 /* NoteDetailView.swift */; };
 		94E61CF62922811700642598 /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E61CF52922811700642598 /* NotesViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		945D72C52920EC8900B3BC94 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		945D72CC2920EECE00B3BC94 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		94B2C30C2928E94D000E1636 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		94B2C3102929C9CD000E1636 /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
 		94E61CF52922811700642598 /* NotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,11 +63,12 @@
 				945D72CC2920EECE00B3BC94 /* Note.swift */,
 				945D72BD2920EC8700B3BC94 /* NotesApp.swift */,
 				945D72BF2920EC8700B3BC94 /* NotesView.swift */,
+				94B2C3102929C9CD000E1636 /* NoteDetailView.swift */,
+				94E61CF52922811700642598 /* NotesViewModel.swift */,
+				94B2C30C2928E94D000E1636 /* Constants.swift */,
 				945D72C12920EC8900B3BC94 /* Assets.xcassets */,
 				945D72C32920EC8900B3BC94 /* Notes.entitlements */,
 				945D72C42920EC8900B3BC94 /* Preview Content */,
-				94E61CF52922811700642598 /* NotesViewModel.swift */,
-				94B2C30C2928E94D000E1636 /* Constants.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 				94B2C30D2928E94D000E1636 /* Constants.swift in Sources */,
 				94E61CF62922811700642598 /* NotesViewModel.swift in Sources */,
 				945D72C02920EC8700B3BC94 /* NotesView.swift in Sources */,
+				94B2C3112929C9CD000E1636 /* NoteDetailView.swift in Sources */,
 				945D72BE2920EC8700B3BC94 /* NotesApp.swift in Sources */,
 				945D72CD2920EECE00B3BC94 /* Note.swift in Sources */,
 			);
