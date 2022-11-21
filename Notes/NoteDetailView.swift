@@ -12,12 +12,14 @@ enum Field: Int, Hashable {
 }
 
 struct NoteDetailView: View {
+    var isEditingMode: Bool
     @Binding var isPresented: Bool
+    @State var id: String
+    @State var content: String
     @ObservedObject var notesViewModel: NotesViewModel
-    @State private var content = "Hello, note"
     @State private var isFocused = true
-    
     @FocusState private var focusedField: Field?
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
@@ -35,13 +37,19 @@ struct NoteDetailView: View {
                         Button("Done") {
                             Task {
                                 do {
-                                    try await notesViewModel.addNote(note: content)
+                                    if(content != "") {
+                                        if(isEditingMode) {
+                                            try await notesViewModel.updateNote(id: id, note: content)
+                                            dismiss()
+                                        } else {
+                                            try await notesViewModel.addNote(note: content)
+                                            self.isPresented.toggle()
+                                        }
+                                    }
                                 } catch {
                                     
                                 }
                             }
-                           
-                            self.isPresented.toggle()
                         }
                     })
                 })
@@ -51,6 +59,6 @@ struct NoteDetailView: View {
 
 struct NoteDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteDetailView(isPresented: .constant(true), notesViewModel: NotesViewModel())
+        NoteDetailView(isEditingMode: true, isPresented: .constant(true), id: "",  content: "Hello there", notesViewModel: NotesViewModel())
     }
 }

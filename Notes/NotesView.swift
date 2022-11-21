@@ -18,13 +18,16 @@ struct NotesView: View {
         NavigationView {
             VStack {
                 List(notesViewModel.notes, id: \.self.id) { note in
-                    Text(note.note)
-                        .swipeActions(content: {
-                            Button("Delete") {
-                                showingAlert.toggle()
-                                selectedNoteId = note.id
-                            }
-                        })
+                    NavigationLink(destination: NoteDetailView(isEditingMode: true, isPresented: $showingAdd, id: note.id, content: note.note, notesViewModel: notesViewModel)) {
+                        Text(note.note)
+                            .swipeActions(content: {
+                                Button("Delete") {
+                                    showingAlert.toggle()
+                                    selectedNoteId = note.id
+                                }
+                            })
+                    }
+                    
                 }.confirmationDialog("Select a color", isPresented: $showingAlert, titleVisibility: .visible) {
                     Button("Delete") {
                         Task {
@@ -40,7 +43,7 @@ struct NotesView: View {
                     }
                 }
                 .sheet(isPresented: $showingAdd) {
-                    NoteDetailView(isPresented: $showingAdd, notesViewModel: notesViewModel)
+                    NoteDetailView(isEditingMode: false, isPresented: $showingAdd, id: "", content: "", notesViewModel: notesViewModel)
                 }
             }.navigationTitle("Notes")
                 .toolbar(content: {
